@@ -1,0 +1,50 @@
+import spacy
+from spacy.lang.en.stop_words import STOP_WORDS
+from string import punctuation
+from heapq import nlargest
+
+text = """Although most people consider piranhas to be quite dangerous, they are, for the most part, entirely harmless. Piranhas rarely feed on large animals; they eat smaller fish and aquatic plants. When confronted with humans, piranhas' first instinct is to flee, not attack. Their fear of humans makes sense. Far more piranhas are eaten by people than people are eaten by piranhas. If the fish are well-fed, they won't bite humans."""
+
+def summarizer(rawdocs):
+    stopwords = list(STOP_WORDS)
+    
+    nlp = spacy.load('en_core_web_sm')
+    doc = nlp(rawdocs)
+   
+    tokens = [token.text for token in doc]
+    word_freq = {}
+    for word in doc:
+        if word.text.lower() not in stopwords and word.text.lower() not in punctuation:
+            if word.text not in word_freq.keys():
+                word_freq[word.text] = 1
+            else:
+                word_freq[word.text] += 1
+    
+
+    max_freq = max(word_freq.values())
+    for word in word_freq.keys():
+        word_freq[word] = word_freq[word]/max_freq
+
+    sent_tokens = [sent for sent in doc.sents]
+    
+
+    sent_score = {}
+    for sent in sent_tokens:
+        for word in sent:
+            if word.text in word_freq.keys():
+                if sent not in sent_score.keys():
+                    sent_score[sent] = word_freq[word.text]
+                else:
+                    sent_score[sent] += word_freq[word.text]
+
+    
+
+    select_len = int(len(sent_tokens) * 0.3)
+    summary = nlargest(select_len, sent_score, key=sent_score.get)
+   
+
+    final_summary = [word.text for word in summary]
+    summary = ' '.join(final_summary)
+   
+
+    return summary,doc, len(rawdocs.split(' ')), len(summary.split(' '))
