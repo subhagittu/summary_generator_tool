@@ -5,7 +5,7 @@ Additionally, the application provides a user-friendly interface that displays b
 <br>
 With the application now live, users can effortlessly access the text summarization feature from any location. Simply by navigating to the given link, they can input their desired text passage, initiate the summarization process, and promptly receive the condensed summary. This streamlined and effective solution streamlines the process of distilling crucial insights from lengthy texts, ultimately saving users valuable time and effort.
 <br> <br>
-<h4> A Screenshot has been attached to show thw final output how it will be : <br><img src = "output.jpg"><br>
+<h4> A Screenshot has been attached to show thw final output how it will be :<br>Screenshot file is -----------------------> output.jpg <h4> <br><img src = "output.jpg" width="100" height="100"><br>
 <h2>Installation</h2>
 To locally execute the Text Summarizer tool application, adhere to these steps:
 
