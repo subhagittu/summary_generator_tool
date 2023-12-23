@@ -16,7 +16,7 @@ To locally execute the Text Summarizer tool application, adhere to these steps:
  source venv/bin/activate</code></li>
     <li>You have to install the required dependencies----> <code>pip install -r requirements.txt</code></li>
     <li>Now you have to start the Flask development server: <code>python app.py</code></li>
-    <li>Now please open your web browser and access the application at <a href="http://localhost:5000" target="_blank">http://localhost:5000</a>.</li>
+    <li>Now please open your web browser and access the application.</li>
 </ol>
 <h2>Features</h2>
 <ul>
